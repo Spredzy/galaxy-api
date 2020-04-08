@@ -1,5 +1,6 @@
 """Project settings."""
 
+import os
 import sys
 
 from dynaconf import LazySettings
@@ -77,11 +78,11 @@ DATABASES = {
     'default': {
         # Gather metrics for 'django.db.backends.postgresql',
         'ENGINE': 'django_prometheus.db.backends.postgresql',
-        'NAME': settings.get('DB_NAME', 'galaxy'),
-        'USER': settings.get('DB_USER', 'galaxy'),
-        'PASSWORD': settings.get('DB_PASSWORD', ''),
-        'HOST': settings.get('DB_HOST', 'localhost'),
-        'PORT': settings.get('DB_PORT', ''),
+        'NAME': os.environ.get('GALAXY_DB_NAME', settings.get('DB_NAME', 'galaxy')),
+        'USER': os.environ.get('GALAXY_DB_USER', settings.get('DB_USER', 'galaxy')),
+        'PASSWORD': os.environ.get('GALAXY_DB_PASSWORD', settings.get('DB_PASSWORD', '')),
+        'HOST': os.environ.get('GALAXY_DB_HOST', settings.get('DB_HOST', 'localhost')),
+        'PORT': os.environ.get('GALAXY_DB_PORT', settings.get('DB_PORT', '')),
     }
 }
 

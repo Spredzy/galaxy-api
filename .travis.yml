@@ -1,11 +1,6 @@
 ---
 language: python
 python: '3.6'
-services:
-  - postgresql
-
-env:
-  - GALAXY_DB_USER=postgres
 
 cache:
   pip: true
@@ -24,4 +19,3 @@ jobs:
       script: tox -e py36
       services:
         - docker
-        - postgresql
